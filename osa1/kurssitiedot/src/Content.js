@@ -1,11 +1,12 @@
 import React from 'react'
+import Part from './Part';
 
 const Content = (props) => {
     return (
       <>
-        <p>{props.part1} {props.exercises1}</p>
-        <p>{props.part2} {props.exercises2}</p>
-        <p>{props.part3} {props.exercises3}</p>
+        <Part partName={props.part1} exerciseAmount={props.exercises1}/>
+        <Part partName={props.part2} exerciseAmount={props.exercises2}/>
+        <Part partName={props.part3} exerciseAmount={props.exercises3}/>
       </>
     )
 }
