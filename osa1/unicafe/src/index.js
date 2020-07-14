@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import Header from './Header'
-import Stats from './Stats'
+import Stats from './Statistics'
 import Button from './Button'
 
 const App = () => {
@@ -17,7 +17,10 @@ const App = () => {
       <Button handleClick={() => setGood(good + 1)} text='good'/>
       <Button handleClick={() => setNeutral(neutral + 1)} text='neutral'/>
       <Button handleClick={() => setBad(bad + 1)} text='bad'/>
-      <Stats text='statistics' goodReviews={good} neutralReviews={neutral} badReviews={bad} />
+      <Stats
+        text='statistics'
+        goodReviews={good} neutralReviews={neutral} badReviews={bad}
+      />
       </div>
     </div>
   )
