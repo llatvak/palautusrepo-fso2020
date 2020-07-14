@@ -1,6 +1,7 @@
 import React from 'react'
+import StatisticLine from './StatisticLine'
 
-const Stats = ({text, goodReviews, neutralReviews, badReviews}) => {
+const Statistics = ({text, goodReviews, neutralReviews, badReviews}) => {
 
   const countAllReviews = () => (
     goodReviews + neutralReviews + badReviews
@@ -14,33 +15,30 @@ const Stats = ({text, goodReviews, neutralReviews, badReviews}) => {
 
   const countPositivePercentage = () => (
     countAllReviews() !== 0
-      ? goodReviews / countAllReviews() * 100
-      : 0
+      ? goodReviews / countAllReviews() * 100 + '%'
+      : 0 + '%'
   )
-
+  
   if(countAllReviews() !== 0) {
     return (
       <div>
         <h2>{text}</h2>
-        <p>
-          good {goodReviews}<br />
-          neutral {neutralReviews}<br />
-          bad {badReviews}<br />
-          all {countAllReviews()}<br />
-          average {countAverageReviews()}<br />
-          positive {countPositivePercentage()}%<br />
-        </p>
+        <StatisticLine text='good' value={goodReviews} />
+        <StatisticLine text='neutral' value={neutralReviews} />
+        <StatisticLine text='bad' value={badReviews} />
+        <StatisticLine text='all' value={countAllReviews()} />
+        <StatisticLine text='average' value={countAverageReviews()} />
+        <StatisticLine text='positive' value={countPositivePercentage()} />
       </div>
     )
   }
   return (
     <div>
       <h2>{text}</h2>
-      <p>
-        No feedback given
-      </p>
+      <p>No feedback given</p>
     </div>
   )
+  
 }
 
-export default Stats
+export default Statistics
