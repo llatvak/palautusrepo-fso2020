@@ -18,16 +18,26 @@ const Stats = ({text, goodReviews, neutralReviews, badReviews}) => {
       : 0
   )
 
+  if(countAllReviews() !== 0) {
+    return (
+      <div>
+        <h2>{text}</h2>
+        <p>
+          good {goodReviews}<br />
+          neutral {neutralReviews}<br />
+          bad {badReviews}<br />
+          all {countAllReviews()}<br />
+          average {countAverageReviews()}<br />
+          positive {countPositivePercentage()}%<br />
+        </p>
+      </div>
+    )
+  }
   return (
     <div>
       <h2>{text}</h2>
       <p>
-        good {goodReviews}<br />
-        neutral {neutralReviews}<br />
-        bad {badReviews}<br />
-        all {countAllReviews()}<br />
-        average {countAverageReviews()}<br />
-        positive {countPositivePercentage()}%<br />
+        No feedback given
       </p>
     </div>
   )
