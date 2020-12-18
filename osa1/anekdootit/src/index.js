@@ -9,7 +9,10 @@ const App = (props) => {
     // Return random anecdote from array
     const max = anecdotes.length - 1
     const min = 0
-    const randomNum = Math.floor(Math.random() * (max - min + 1) ) + min
+    let randomNum = 0;
+    while(selected === randomNum) {
+      randomNum = Math.floor(Math.random() * (max - min + 1) ) + min
+    }
     setSelected(randomNum)
   }
 
