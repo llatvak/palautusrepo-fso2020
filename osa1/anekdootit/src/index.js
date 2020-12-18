@@ -1,25 +1,49 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import Button from './Button'
+import Title from './Title'
+import AnecdoteText from './AnecdoteText'
 
 const App = (props) => {
   const [selected, setSelected] = useState(0)
+  // Init array with length of anecdotes and fill with zeroes
+  const [points, setPoints] = useState(
+    Array.apply(null, new Array(props.anecdotes.length)).map(Number.prototype.valueOf,0)
+  )
 
   const showAnecdote = () => {
     // Return random anecdote from array
     const max = anecdotes.length - 1
     const min = 0
     let randomNum = 0;
-    while(selected === randomNum) {
+    // Generate random numbers until different than selected
+    do {
       randomNum = Math.floor(Math.random() * (max - min + 1) ) + min
-    }
+    } while(selected === randomNum)
     setSelected(randomNum)
+  }
+
+  // Vote currently selected anecdote
+  const voteAnecdote = () => {
+    const newPoints = [...points]
+    newPoints[selected] += 1
+    setPoints(newPoints)
   }
 
   return (
     <div>
-      {props.anecdotes[selected]}
-      <Button text='Show Anecdote' handleClick={showAnecdote}/>
+      <Title text='Anecdote of the day'/>
+      <AnecdoteText 
+        anecdote={props.anecdotes[selected]} 
+        votes={points[selected]} />
+      <div>
+        <Button text='vote' handleClick={voteAnecdote}/>
+        <Button text='next anecdote' handleClick={showAnecdote}/>
+      </div>
+        <Title text='Anecdote with most votes'/>
+        <AnecdoteText 
+          anecdote={props.anecdotes[points.indexOf(Math.max(...points))]}
+          votes={Math.max(...points)} />
     </div>
   )
 }
